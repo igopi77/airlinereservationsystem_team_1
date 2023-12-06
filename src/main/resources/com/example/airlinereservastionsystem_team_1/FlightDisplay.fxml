@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airlinereservastionsystem_team_1.FlightDisplayController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="534.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Home">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Booking history">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Profile">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutX="535.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Logout" />
+      <ImageView fitHeight="485.0" fitWidth="631.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@FlightDisplay.png" />
+         </image>
+      </ImageView>
+      <TableView layoutX="169.0" layoutY="122.0" prefHeight="238.0" prefWidth="434.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Flight No" />
+          <TableColumn prefWidth="75.0" text="Flight Name" />
+            <TableColumn prefWidth="75.0" text="Flight Time" />
+            <TableColumn prefWidth="75.0" text="Availability" />
+            <TableColumn prefWidth="57.5999755859375" text="Duration" />
+            <TableColumn prefWidth="65.60003662109375" text="Prize" />
+        </columns>
+      </TableView>
+      <Button layoutX="351.0" layoutY="361.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Book" />
+      <ImageView fitHeight="82.0" fitWidth="128.0" layoutX="340.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@AvailableResultsFlightDisplay.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
