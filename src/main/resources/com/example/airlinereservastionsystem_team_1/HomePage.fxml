@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.airlinereservastionsystem_team_1.HomePageController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="478.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airlinereservastionsystem_team_1.HomePageController">
+   <children>
+      <ImageView fitHeight="484.0" fitWidth="716.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Flight.jpg" />
+         </image>
+      </ImageView>
+      <DialogPane layoutX="108.0" layoutY="335.0" opacity="0.53" prefHeight="100.0" prefWidth="119.0" />
+      <DialogPane layoutX="502.0" layoutY="335.0" opacity="0.52" prefHeight="100.0" prefWidth="119.0" />
+      <ImageView fitHeight="107.0" fitWidth="140.0" layoutX="502.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@passenger.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="119.0" layoutX="118.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@staff-8-512.png" />
+         </image>
+      </ImageView>
+      <ButtonBar layoutY="435.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Login" />
+        </buttons>
+      </ButtonBar>
+      <ButtonBar layoutX="402.0" layoutY="435.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Login" />
+        </buttons>
+      </ButtonBar>
+      <ImageView fitHeight="172.0" fitWidth="348.0" layoutX="168.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Company_name.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>
