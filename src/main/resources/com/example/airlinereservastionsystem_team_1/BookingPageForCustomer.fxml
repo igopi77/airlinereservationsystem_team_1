@@ -36,7 +36,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <Button layoutX="531.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Logout" />
+            <Button fx:id="logout" layoutX="531.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Logout" onAction="#onButtonLogout" />
             <ImageView fitHeight="252.0" fitWidth="600.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@BokkingDashboard1.jpg" />
@@ -63,7 +63,7 @@
                   <Image url="@DestinationSymbolBookingPage.png" />
                </image>
             </ImageView>
-            <Button layoutX="235.0" layoutY="110.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" text="Search" />
+            <Button fx:id="searchFlight" layoutX="235.0" layoutY="110.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="88.0" text="Search" onAction="#onButtonBookingPage"/>
             <Label layoutX="40.0" layoutY="52.0" prefHeight="25.0" prefWidth="66.0" text="From" textFill="#e11717">
                <font>
                   <Font name="Calibri" size="19.0" />

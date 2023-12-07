@@ -29,12 +29,12 @@
       </ImageView>
       <ButtonBar layoutY="435.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Login" />
+          <Button mnemonicParsing="false" text="Login" onAction="#onHandleButtonSignupStaff" fx:id="loginButtonStaff"/>
         </buttons>
       </ButtonBar>
       <ButtonBar layoutX="402.0" layoutY="435.0" prefHeight="40.0" prefWidth="200.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Login" />
+          <Button mnemonicParsing="false" text="Login" onAction="#onHandleButtonSignupCustomer" fx:id="loginButtonCustomer"/>
         </buttons>
       </ButtonBar>
       <ImageView fitHeight="172.0" fitWidth="348.0" layoutX="168.0" pickOnBounds="true" preserveRatio="true">

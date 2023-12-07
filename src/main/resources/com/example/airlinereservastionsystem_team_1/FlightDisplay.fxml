@@ -31,7 +31,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="535.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Logout" />
+      <Button fx:id="logout" layoutX="535.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Logout"  onAction="#onButtonLogout"/>
       <ImageView fitHeight="485.0" fitWidth="631.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@FlightDisplay.png" />
@@ -47,7 +47,7 @@
             <TableColumn prefWidth="65.60003662109375" text="Prize" />
         </columns>
       </TableView>
-      <Button layoutX="351.0" layoutY="361.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Book" />
+      <Button fx:id="book" layoutX="351.0" layoutY="361.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="Book" onAction="#onButtonFlightDisplay" />
       <ImageView fitHeight="82.0" fitWidth="128.0" layoutX="340.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@AvailableResultsFlightDisplay.png" />
