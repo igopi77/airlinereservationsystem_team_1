@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -34,18 +33,18 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="logout" layoutX="536.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="65.0" text="LogOut" onAction="#onButtonLogout"/>
+      <Button fx:id="logout" layoutX="536.0" mnemonicParsing="false" onAction="#onButtonLogout" prefHeight="39.0" prefWidth="65.0" text="LogOut" />
       <ImageView fitHeight="360.0" fitWidth="600.0" layoutX="1.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@updatestaff.jpg" />
          </image>
       </ImageView>
-      <TextField layoutX="152.0" layoutY="138.0" />
-      <TextField layoutX="152.0" layoutY="188.0" />
-      <TextField layoutX="152.0" layoutY="239.0" />
-      <TextField layoutX="152.0" layoutY="283.0" />
-      <TextField layoutX="438.0" layoutY="201.0" />
-      <TextField layoutX="438.0" layoutY="283.0" />
+      <TextField fx:id="flightNo" layoutX="152.0" layoutY="138.0" />
+      <TextField fx:id="flightName" layoutX="152.0" layoutY="188.0" />
+      <TextField fx:id="departure" layoutX="152.0" layoutY="239.0" />
+      <TextField fx:id="destination" layoutX="152.0" layoutY="283.0" />
+      <TextField fx:id="flightTime" layoutX="438.0" layoutY="201.0" />
+      <TextField fx:id="duration" layoutX="438.0" layoutY="283.0" />
       <Label layoutX="38.0" layoutY="141.0" text="Flight Number :">
          <font>
             <Font size="14.0" />
@@ -86,13 +85,13 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="438.0" layoutY="243.0" prefWidth="150.0" />
-      <Button fx:id="add" layoutX="292.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" text="ADD" onAction="#onButtonAddFlight" />
+      <Button fx:id="add" layoutX="292.0" layoutY="315.0" mnemonicParsing="false" onAction="#onButtonAddFlight" prefHeight="25.0" prefWidth="83.0" text="ADD" />
       <ImageView fitHeight="91.0" fitWidth="113.0" layoutX="244.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@addflight1.jpg" />
          </image>
       </ImageView>
-      <DatePicker layoutX="438.0" layoutY="138.0" prefHeight="25.0" prefWidth="150.0" />
+      <DatePicker fx:id="date" layoutX="438.0" layoutY="138.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="price" layoutX="439.0" layoutY="239.0" />
    </children>
 </AnchorPane>

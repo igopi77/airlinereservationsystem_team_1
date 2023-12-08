@@ -19,7 +19,7 @@
       <PasswordField fx:id="password" layoutX="227.0" layoutY="229.0" promptText="Password" />
       <ButtonBar layoutX="146.0" layoutY="272.0" prefHeight="40.0" prefWidth="200.0">
          <buttons>
-          <Button fx:id="button_login" mnemonicParsing="false" onAction="#onButtonLoginCustomer" prefHeight="26.0" prefWidth="82.0" text="Login" />
+          <Button fx:id="button_login" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="26.0" prefWidth="82.0" text="Login" />
          </buttons>
       </ButtonBar>
     <Button fx:id="newaccount" layoutX="211.0" layoutY="345.0" mnemonicParsing="false" onAction="#onButtonNewAccountCustomer" prefHeight="39.0" prefWidth="179.0" text="Create New Account" />

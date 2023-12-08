@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -13,25 +14,74 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class TicketPageController implements Initializable {
 
     @FXML
+    private TextField bookingId;
+
+    @FXML
     private Button confirmTicket;
 
     @FXML
+    private TextField email;
+
+    @FXML
     private Button logout;
+
+    @FXML
+    private TextField name;
+
+    @FXML
+    private TextField noOfTicket;
+
+    @FXML
+    private TextField phoneNumber;
+
     @FXML
     protected void onButtonConfirm(ActionEvent event) {
-        try {
-            FXMLLoader bookingConfirmLoader = new FXMLLoader(getClass().getResource("BookingHistoryCustomer.fxml"));
-            Parent RootBookingConfirm = bookingConfirmLoader.load();
-            Stage curBookingConfirm = (Stage) confirmTicket.getScene().getWindow();
-            curBookingConfirm.setScene(new Scene(RootBookingConfirm));
-            curBookingConfirm.setTitle("Booking History");
-        } catch (IOException e) {
-            System.out.println(e);
+        if (name.getText() == null || name.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
+            alert.show();
+        } else if (email.getText() == null || email.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
+            alert.show();
+        } else if (phoneNumber.getText() == null || phoneNumber.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
+            alert.show();
+        }
+        else if (noOfTicket.getText() == null || noOfTicket.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
+            alert.show();
+        }
+        else {
+            PreparedStatement pst = null;
+            ResultSet rs=null;
+            Connection connection =DataBaseConnection.getConnection();
+            try {
+                pst = connection.prepareStatement("INSERT INTO ticket (noOfPerson, EmailID, Name, PhoneNumber) VALUES (?, ?, ?, ?)");
+                pst.setString(1, noOfTicket.getText());
+                pst.setString(2, email.getText());
+                pst.setString(3, name.getText());
+                pst.setString(4, phoneNumber.getText());
+                pst.executeUpdate();
+                //Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ticket booked successfully it will be directed to booking history");
+                //alert.show();
+                FXMLLoader bookingConfirmLoader = new FXMLLoader(getClass().getResource("BookingHistoryCustomer.fxml"));
+                Parent RootBookingConfirm = bookingConfirmLoader.load();
+                Stage curBookingConfirm = (Stage) confirmTicket.getScene().getWindow();
+                curBookingConfirm.setScene(new Scene(RootBookingConfirm));
+                curBookingConfirm.setTitle("Booking History");
+            } catch (IOException e) {
+                System.out.println(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

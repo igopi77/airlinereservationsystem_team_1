@@ -6,12 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class StaffLoginController implements Initializable {
@@ -24,15 +30,32 @@ public class StaffLoginController implements Initializable {
 
     @FXML
     private TextField username;
-    @FXML
-    protected void onButtonStaffLoginPage(ActionEvent event) {
+    public void onButtonStaffLoginPage(ActionEvent event){
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        Connection connection = DataBaseConnection.getConnection();
         try {
-            FXMLLoader StaffLoginLoader = new FXMLLoader(getClass().getResource("FlightUpdateStaff.fxml"));
-            Parent RootStaffLogin = StaffLoginLoader.load();
-            Stage curStaffLogin = (Stage) login.getScene().getWindow();
-            curStaffLogin.setScene(new Scene(RootStaffLogin));
-            curStaffLogin.setTitle("Staff Home");
-        } catch (IOException e) {
+            pst = connection.prepareStatement("SELECT * FROM staff WHERE username = ? AND password = ?");
+            pst.setString(1,username.getText());
+            pst.setString(2,password.getText());
+            rs = pst.executeQuery();
+            if(rs.next()){
+                try{
+                    FXMLLoader staffLoginLoader = new FXMLLoader(getClass().getResource("FlightUpdateStaff.fxml"));
+                    Parent rootStaffLogin = (Parent) staffLoginLoader.load();
+                    Stage curStaffLogin= (Stage) login.getScene().getWindow();
+                    curStaffLogin.setScene(new Scene(rootStaffLogin));
+                    curStaffLogin.setTitle("Flight Booking");
+                }
+                catch (IOException e){
+                    System.out.println(e);
+                }
+            }
+            else{
+                Alert error = new Alert(Alert.AlertType.ERROR,"Invalid username/Password...!", ButtonType.OK);
+                error.show();
+            }
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
