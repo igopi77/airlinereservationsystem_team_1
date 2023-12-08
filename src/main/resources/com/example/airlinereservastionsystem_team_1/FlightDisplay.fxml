@@ -52,6 +52,6 @@
             <Image url="@AvailableResultsFlightDisplay.png" />
          </image>
       </ImageView>
-      <Button fx:id="view" layoutX="472.0" layoutY="70.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="94.0" text="View"  onAction="#onTruncateButtonClick"/>
+      <Button fx:id="view" layoutX="472.0" layoutY="70.0" mnemonicParsing="false" onAction="#onTruncateButtonClick" prefHeight="0.0" prefWidth="94.0" text="search" />
    </children>
 </AnchorPane>

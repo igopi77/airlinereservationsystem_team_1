@@ -10,7 +10,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airlinereservastionsystem_team_1.BookingHistoryCustomerController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="26.0" prefWidth="534.0">
@@ -32,21 +31,21 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="534.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Logout" />
+      <Button fx:id="logout" layoutX="534.0" layoutY="2.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="Logout" />
       <ImageView fitHeight="369.0" fitWidth="654.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@BookingHistoryCustomer.png" />
          </image>
       </ImageView>
-      <TableView layoutX="88.0" layoutY="66.0" prefHeight="200.0" prefWidth="379.0">
+      <TableView fx:id="ticketTableView" layoutX="34.0" layoutY="66.0" prefHeight="200.0" prefWidth="542.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Customer Id" />
-          <TableColumn prefWidth="75.0" text="Ticket Id" />
-            <TableColumn prefWidth="75.0" text="FlightName" />
-            <TableColumn prefWidth="75.0" text="Flight No" />
-            <TableColumn prefWidth="75.0" text="Prize" />
+          <TableColumn fx:id="nameColumn" prefWidth="108.79998779296875" text="Customer Name" />
+          <TableColumn fx:id="ticketIdColumn" prefWidth="69.60003662109375" text="Ticket Id" />
+            <TableColumn fx:id="noOfPersonColumn" prefWidth="90.39996337890625" text="No of person" />
+            <TableColumn fx:id="emailIdColumn" prefWidth="138.39996337890625" text="Email Id" />
+            <TableColumn fx:id="phoneNumberColumn" prefWidth="126.39996337890625" text="PhoneNumber" />
         </columns>
       </TableView>
-      <Button layoutX="504.0" layoutY="139.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="94.0" text="Cancel Ticket" />
+      <Button fx:id="cancel" layoutX="531.0" layoutY="298.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="94.0" text="Cancel Ticket"  onAction="#onButtonDeleteTicket"/>
    </children>
 </AnchorPane>

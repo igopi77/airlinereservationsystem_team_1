@@ -148,8 +148,6 @@ public class FlightDisplayController implements Initializable {
                 // Prepare and execute the statement
                 try (PreparedStatement pst = connection.prepareStatement(query)) {
                     pst.executeUpdate();
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Table truncated successfully!");
-                    alert.show();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
