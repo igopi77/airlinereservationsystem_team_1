@@ -41,7 +41,8 @@ public class CreateNewAcoountCustomerController implements Initializable{
 
     @FXML
     private TextField userName;
-
+    @FXML
+    private Button cancel;
     @FXML
     public void onButtonCreateCustomer(ActionEvent event) {
         if (userName.getText() == null || userName.getText().trim().isEmpty()) {
@@ -84,6 +85,19 @@ public class CreateNewAcoountCustomerController implements Initializable{
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+    @FXML
+    protected void onButtonBack(ActionEvent event) {
+        try {
+            FXMLLoader customerBack = new FXMLLoader(getClass().getResource("HomePage.fxml"));
+            Parent RootCustomerBack = customerBack.load();
+            Stage curCustomerBack = (Stage) cancel.getScene().getWindow();
+            curCustomerBack.setScene(new Scene(RootCustomerBack));
+            curCustomerBack.setTitle("Airline Reservation System");
+
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
     @Override

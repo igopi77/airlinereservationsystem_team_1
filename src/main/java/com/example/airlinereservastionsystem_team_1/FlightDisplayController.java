@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -24,6 +21,11 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class FlightDisplayController implements Initializable {
+    @FXML
+    private TableColumn<Flight, String> departure;
+
+    @FXML
+    private TableColumn<Flight, String> destination;
 
     @FXML
     private Button book;
@@ -52,6 +54,15 @@ public class FlightDisplayController implements Initializable {
     @FXML
     private Button view;
 
+    @FXML
+    private Button back;
+
+    @FXML
+    private TextField username;
+
+    @FXML
+    private Button ok;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize the columns
@@ -60,6 +71,8 @@ public class FlightDisplayController implements Initializable {
         flightTime.setCellValueFactory(new PropertyValueFactory<>("flightTime"));
         duration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         prize.setCellValueFactory(new PropertyValueFactory<>("price"));
+        departure.setCellValueFactory(new PropertyValueFactory<>("departure"));
+        destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
 
         // Fetch data from the database and populate the table
         updateTableView();
@@ -93,7 +106,9 @@ public class FlightDisplayController implements Initializable {
                                         rs.getString("FlightName"),
                                         rs.getString("time"),
                                         rs.getInt("Duration"),
-                                        rs.getInt("Price")
+                                        rs.getInt("Price"),
+                                        rs.getString("departure"),
+                                        rs.getString("destination")
                                 );
                                 flights.add(flight);
                             }
@@ -110,15 +125,62 @@ public class FlightDisplayController implements Initializable {
 
     @FXML
     protected void onButtonBook(ActionEvent event) {
-        try {
-            FXMLLoader customerBook = new FXMLLoader(getClass().getResource("TicketPage.fxml"));
-            Parent RootCustomerBook = customerBook.load();
-            Stage curCustomerBook = (Stage) book.getScene().getWindow();
-            curCustomerBook.setScene(new Scene(RootCustomerBook));
-        } catch (IOException e) {
-            System.out.println(e);
+        // Get the selected flight from the table view
+        Flight selectedFlight = tableview.getSelectionModel().getSelectedItem();
+        String userName = username.getText();
+
+        if (selectedFlight == null) {
+            // No row selected, show an alert or handle the case appropriately
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a flight to book.");
+            alert.show();
+        } else {
+            // A row is selected, proceed with booking
+            Connection connection = DataBaseConnection.getConnection();
+
+            if (connection != null) {
+                try {
+                    // Specify the table name for booking
+                    String tableName = "book";
+
+                    // Create a SQL statement to insert the selected flight into the book table
+                    String query = "INSERT INTO " + tableName + " (FlightNo, FlightName, FlightTime, timing, Prize,CustomerId,Departure,Destination) VALUES (?, ?, ?, ?, ?,?,?,?)";
+
+                    // Prepare and execute the statement
+                    try (PreparedStatement pst = connection.prepareStatement(query)) {
+                        pst.setInt(1, selectedFlight.getFlightNo());
+                        pst.setString(2, selectedFlight.getFlightName());
+                        pst.setString(3, selectedFlight.getFlightTime());
+                        pst.setInt(4, selectedFlight.getDuration());
+                        pst.setInt(5, selectedFlight.getPrice());
+                        pst.setString(6,userName);
+                        pst.setString(7,selectedFlight.getDeparture());
+                        pst.setString(8,selectedFlight.getDestination());
+
+                        pst.executeUpdate();
+
+                        String customerId = userName;
+                        // Load the TicketPage.fxml when the booking is successful
+                        FXMLLoader customerBook = new FXMLLoader(getClass().getResource("TicketPage.fxml"));
+                        Parent rootCustomerBook = customerBook.load();
+                        Stage curCustomerBook =  (Stage) book.getScene().getWindow();
+                        curCustomerBook.setScene(new Scene(rootCustomerBook));
+
+                    } catch (SQLException | IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                } finally {
+                    try {
+                        // Close the connection after usage
+                        connection.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
     }
+
+
 
     @FXML
     protected void onButtonLogout(ActionEvent event) {
@@ -157,6 +219,19 @@ public class FlightDisplayController implements Initializable {
         }
     }
 
+    @FXML
+    protected void onButtonBack(ActionEvent event) {
+        try {
+            FXMLLoader customerBack = new FXMLLoader(getClass().getResource("FlightUpdateStaff.fxml"));
+            Parent RootCustomerBack = customerBack.load();
+            Stage curCustomerBack = (Stage) back.getScene().getWindow();
+            curCustomerBack.setScene(new Scene(RootCustomerBack));
+            curCustomerBack.setTitle("Airline Reservation System");
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
     @FXML
     protected void onButtonView(ActionEvent event) {
         // Call the updateTableView method to refresh the table view

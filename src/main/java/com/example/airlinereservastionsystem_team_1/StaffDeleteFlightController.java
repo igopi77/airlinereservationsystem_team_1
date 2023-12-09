@@ -31,6 +31,8 @@ public class StaffDeleteFlightController implements Initializable{
     @FXML
     private Button logout;
     @FXML
+    private Button back;
+    @FXML
     protected void onButtonDeleteFlight(ActionEvent event) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Delete Flight");
@@ -77,6 +79,19 @@ public class StaffDeleteFlightController implements Initializable{
             Stage curCustomerLogout = (Stage) logout.getScene().getWindow();
             curCustomerLogout.setScene(new Scene(RootCustomerLogout));
             curCustomerLogout.setTitle("Airline Reservation System");
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+    @FXML
+    protected void onButtonBack(ActionEvent event) {
+        try {
+            FXMLLoader customerBack = new FXMLLoader(getClass().getResource("FlightUpdateStaff.fxml"));
+            Parent RootCustomerBack = customerBack.load();
+            Stage curCustomerBack = (Stage) back.getScene().getWindow();
+            curCustomerBack.setScene(new Scene(RootCustomerBack));
+            curCustomerBack.setTitle("Airline Reservation System");
+
         } catch (IOException e) {
             System.out.println(e);
         }
