@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FlightUpdateStaffController implements Initializable {
+public class FlightUpdateStaffController implements Initializable  {
 
     @FXML
     private Button add;

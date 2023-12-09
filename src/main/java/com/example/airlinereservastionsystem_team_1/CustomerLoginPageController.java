@@ -31,6 +31,8 @@ public class CustomerLoginPageController  implements Initializable {
     @FXML
     private TextField username;
     @FXML
+    private Button cancel;
+    @FXML
     public void onClickLogin(ActionEvent event){
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -42,6 +44,7 @@ public class CustomerLoginPageController  implements Initializable {
             rs = pst.executeQuery();
             if(rs.next()){
                 try{
+                    String user = username.getText();
                     FXMLLoader customerLoginloader = new FXMLLoader(getClass().getResource("BookingPageForCustomer.fxml"));
                     Parent rootCustomerLogin = (Parent) customerLoginloader.load();
                     Stage curCustomerLogin= (Stage) button_login.getScene().getWindow();
@@ -74,7 +77,19 @@ public class CustomerLoginPageController  implements Initializable {
             System.out.println(e);
         }
     }
+    @FXML
+    protected void onButtonBack(ActionEvent event) {
+        try {
+            FXMLLoader customerBack = new FXMLLoader(getClass().getResource("HomePage.fxml"));
+            Parent RootCustomerBack = customerBack.load();
+            Stage curCustomerBack = (Stage) cancel.getScene().getWindow();
+            curCustomerBack.setScene(new Scene(RootCustomerBack));
+            curCustomerBack.setTitle("Airline Reservation System");
 
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_login.setOnAction(this::onClickLogin);

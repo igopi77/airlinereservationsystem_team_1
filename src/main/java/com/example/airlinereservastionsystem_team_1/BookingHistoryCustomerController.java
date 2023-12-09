@@ -4,13 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,6 +40,8 @@ public class BookingHistoryCustomerController implements Initializable {
 
     @FXML
     private TableColumn<Ticket, String> phoneNumberColumn;
+    @FXML
+    private Button logout;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -115,5 +119,18 @@ public class BookingHistoryCustomerController implements Initializable {
                 alert.show();
             }
         });
+    }
+    @FXML
+    protected void onButtonLogout(ActionEvent event) {
+        try {
+            FXMLLoader customerLogout = new FXMLLoader(getClass().getResource("HomePage.fxml"));
+            Parent RootCustomerLogout = customerLogout.load();
+            Stage curCustomerLogout = (Stage) logout.getScene().getWindow();
+            curCustomerLogout.setScene(new Scene(RootCustomerLogout));
+            curCustomerLogout.setTitle("Airline Reservation System");
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }

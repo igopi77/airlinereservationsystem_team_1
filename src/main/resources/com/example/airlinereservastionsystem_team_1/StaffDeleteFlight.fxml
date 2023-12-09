@@ -56,5 +56,6 @@
             <Image url="@Company_name.png" />
          </image>
       </ImageView>
+      <Button fx:id="back" layoutX="14.0" layoutY="52.0" mnemonicParsing="false" text="Back" onAction="#onButtonBack" />
    </children>
 </AnchorPane>

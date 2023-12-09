@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,6 +39,12 @@ public class TicketPageController implements Initializable {
 
     @FXML
     private TextField phoneNumber;
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField password;
+    @FXML
+    private Button home;
 
     @FXML
     protected void onButtonConfirm(ActionEvent event) {
@@ -51,7 +54,16 @@ public class TicketPageController implements Initializable {
         } else if (email.getText() == null || email.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
             alert.show();
-        } else if (phoneNumber.getText() == null || phoneNumber.getText().trim().isEmpty()) {
+        }
+        else if (username.getText() == null || username.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
+            alert.show();
+        }
+        else if (password.getText() == null || password.getText().trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
+            alert.show();
+        }
+        else if (phoneNumber.getText() == null || phoneNumber.getText().trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Enter correctly ...!");
             alert.show();
         }
@@ -64,11 +76,12 @@ public class TicketPageController implements Initializable {
             ResultSet rs=null;
             Connection connection =DataBaseConnection.getConnection();
             try {
-                pst = connection.prepareStatement("INSERT INTO ticket (noOfPerson, EmailID, Name, PhoneNumber) VALUES (?, ?, ?, ?)");
+                pst = connection.prepareStatement("INSERT INTO ticket (noOfPerson, EmailID, Name, PhoneNumber,CustomerId) VALUES (?, ?, ?, ?,?)");
                 pst.setString(1, noOfTicket.getText());
                 pst.setString(2, email.getText());
                 pst.setString(3, name.getText());
                 pst.setString(4, phoneNumber.getText());
+                pst.setString(5,username.getText());
                 pst.executeUpdate();
                 //Alert alert = new Alert(Alert.AlertType.INFORMATION, "Ticket booked successfully it will be directed to booking history");
                 //alert.show();
@@ -88,16 +101,30 @@ public class TicketPageController implements Initializable {
     @FXML
     protected void onButtonLogout(ActionEvent event) {
         try {
+                String user = username.getText();
             FXMLLoader customerLogout = new FXMLLoader(getClass().getResource("HomePage.fxml"));
             Parent RootCustomerLogout = customerLogout.load();
             Stage curCustomerLogout = (Stage) logout.getScene().getWindow();
             curCustomerLogout.setScene(new Scene(RootCustomerLogout));
             curCustomerLogout.setTitle("Airline Reservation System");
+
         } catch (IOException e) {
             System.out.println(e);
         }
     }
+    @FXML
+    protected void onButtonBack(ActionEvent event) {
+        try {
+            FXMLLoader customerBack = new FXMLLoader(getClass().getResource("FlightUpdateStaff.fxml"));
+            Parent RootCustomerBack = customerBack.load();
+            Stage curCustomerBack = (Stage) home.getScene().getWindow();
+            curCustomerBack.setScene(new Scene(RootCustomerBack));
+            curCustomerBack.setTitle("Airline Reservation System");
 
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         confirmTicket.setOnAction(this::onButtonConfirm);

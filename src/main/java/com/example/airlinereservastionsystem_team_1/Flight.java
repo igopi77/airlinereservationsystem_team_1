@@ -6,15 +6,19 @@ public class Flight {
     private String flightTime;
     private int duration;
     private int price;
+    private String departure;
+    private String destination;
 
     // Constructors, getters, and setters
 
-    public Flight(int flightNo, String flightName, String flightTime, int duration, int price) {
+    public Flight(int flightNo, String flightName, String flightTime, int duration, int price,String departure,String destination) {
         this.flightNo = flightNo;
         this.flightName = flightName;
         this.flightTime = flightTime;
         this.duration = duration;
         this.price = price;
+        this.departure = departure;
+        this.destination = destination;
     }
 
     public int getFlightNo() {
@@ -57,4 +61,9 @@ public class Flight {
     public void setPrice(int price) {
         this.price = price;
     }
+    public String getDeparture(){ return departure;}
+    public void setDeparture(String departure){this.departure=departure;}
+    public String getDestination(){ return destination;}
+    public void setDestination(String destination){this.destination=destination;}
+
 }
